@@ -37,6 +37,11 @@ yarn-error.log*
 # vercel
 .vercel
 
+# cloud-build checkpoint artifacts (not source of truth)
+/ikram-meme-and-co-phase1-complete/
+*.zip
+SYNC-README.txt
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

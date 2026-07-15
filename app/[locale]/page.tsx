@@ -1,6 +1,30 @@
-import { useTranslations } from "next-intl";
+import { Hero } from "@/components/landing/hero";
+import { ProductCard } from "@/components/product-card";
+import { SubscribeForm } from "@/components/subscribe-form";
+import { createClient } from "@/lib/supabase/server";
+import { getLiveProducts } from "@/lib/catalog";
+import type { Db } from "@/lib/db-types";
 
-export default function HomePage() {
-  const t = useTranslations("hero");
-  return <h1 className="p-8 text-3xl font-bold">{t("title")}</h1>;
+export const dynamic = "force-dynamic";
+
+export default async function HomePage() {
+  const db = (await createClient()) as unknown as Db;
+  const products = await getLiveProducts(db);
+  return (
+    <>
+      <Hero />
+      {products.length > 0 && (
+        <section className="mx-auto max-w-6xl px-4 pb-16">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {products.slice(0, 6).map((p) => (
+              <ProductCard key={p.id} p={p} />
+            ))}
+          </div>
+        </section>
+      )}
+      <footer className="mx-auto max-w-6xl px-4 pb-24">
+        <SubscribeForm />
+      </footer>
+    </>
+  );
 }
