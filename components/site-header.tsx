@@ -9,7 +9,7 @@ export function SiteHeader() {
   return (
     <header className="glass-strong fixed top-4 inset-x-4 z-50 flex items-center justify-between px-6 py-3">
       <Link href="/" className="text-lg font-black tracking-tight">
-        Arab Stickers Co <span className="text-[--color-accent]">◆</span>
+        Ikram &amp; Co. <span className="text-[--color-accent]">◆</span>
       </Link>
       <nav className="flex items-center gap-4 text-sm">
         <Link href="/shop">{t("shop")}</Link>

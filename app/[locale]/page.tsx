@@ -1,6 +1,5 @@
 import { Hero } from "@/components/landing/hero";
 import { ProductCard } from "@/components/product-card";
-import { SubscribeForm } from "@/components/subscribe-form";
 import { createClient } from "@/lib/supabase/server";
 import { getLiveProducts } from "@/lib/catalog";
 import type { Db } from "@/lib/db-types";
@@ -22,9 +21,6 @@ export default async function HomePage() {
           </div>
         </section>
       )}
-      <footer className="mx-auto max-w-6xl px-4 pb-24">
-        <SubscribeForm />
-      </footer>
     </>
   );
 }

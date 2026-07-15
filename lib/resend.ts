@@ -10,7 +10,7 @@ export async function sendEmail(opts: {
   if (!key) return;
   try {
     await new Resend(key).emails.send({
-      from: process.env.RESEND_FROM_EMAIL ?? "Arab Stickers Co <orders@updates.arabstickers.co>",
+      from: process.env.RESEND_FROM_EMAIL ?? "Ikram & Co. <orders@updates.dobeu.store>",
       ...opts,
     });
   } catch (err) {

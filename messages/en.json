@@ -2,6 +2,25 @@
   "nav": { "shop": "Shop", "artists": "Artists", "home": "Home" },
   "hero": { "title": "One of one. From real Arab artists.", "cta": "Shop the drop" },
   "product": { "buyNow": "Buy now", "sold": "SOLD", "justSold": "Someone just bought this piece.", "by": "by" },
-  "footer": { "subscribe": "Get drop announcements", "emailPlaceholder": "your@email.com", "subscribed": "You're on the list." },
+  "footer": {
+    "subscribe": "Get drop announcements",
+    "emailPlaceholder": "your@email.com",
+    "subscribed": "You're on the list.",
+    "tagline": "Original art, limited editions, and stickers from real Arab artists.",
+    "shopHeading": "Shop",
+    "companyHeading": "Company",
+    "legalHeading": "Legal",
+    "shop": "Shop",
+    "artists": "Artists",
+    "about": "About",
+    "contact": "Contact",
+    "faq": "FAQ",
+    "tos": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "cookies": "Cookie Policy",
+    "refunds": "Refunds & Returns",
+    "shipping": "Shipping",
+    "rights": "© 2026 Dobeu Tech Solutions LLC. All rights reserved."
+  },
   "consent": { "message": "We use cookies to understand what resonates. Only with your OK.", "accept": "Accept", "decline": "Decline" }
 }
