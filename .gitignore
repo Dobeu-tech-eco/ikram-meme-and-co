@@ -45,3 +45,6 @@ SYNC-README.txt
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+.vercel
+.env*
