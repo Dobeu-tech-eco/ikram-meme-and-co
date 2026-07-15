@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --color-surface: oklch(0.98 0.005 90);
+  --color-surface-2: oklch(0.94 0.01 90);
+  --color-fg: oklch(0.2 0.02 270);
+  --color-accent: oklch(0.68 0.21 25);   /* vibrant coral-red */
+  --color-accent-2: oklch(0.75 0.16 160); /* vibrant teal-green */
+  --radius-xl: 1.25rem;
+}
+.dark {
+  --color-surface: oklch(0.17 0.015 270);
+  --color-surface-2: oklch(0.22 0.02 270);
+  --color-fg: oklch(0.95 0.01 90);
+  --color-accent: oklch(0.72 0.19 25);
+  --color-accent-2: oklch(0.78 0.15 160);
+}
+
+@theme inline {
+  --color-surface: var(--color-surface);
+  --color-surface-2: var(--color-surface-2);
+  --color-fg: var(--color-fg);
+  --color-accent: var(--color-accent);
+  --color-accent-2: var(--color-accent-2);
+}
+
+body {
+  background: var(--color-surface);
+  color: var(--color-fg);
+}
+
+.glass {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: color-mix(in oklab, var(--color-surface) 60%, transparent);
+  border: 1px solid color-mix(in oklab, var(--color-fg) 12%, transparent);
+  border-radius: var(--radius-xl);
+}
+
+.glass-strong {
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  background: color-mix(in oklab, var(--color-surface) 75%, transparent);
+  border: 1px solid color-mix(in oklab, var(--color-accent) 25%, transparent);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 8px 32px color-mix(in oklab, var(--color-fg) 8%, transparent);
+}
