@@ -45,8 +45,18 @@ vercel link          # create/link the project (needs `vercel login` once)
 foreach ($k in @(
   "NEXT_PUBLIC_SUPABASE_URL","NEXT_PUBLIC_SUPABASE_ANON_KEY","SUPABASE_SERVICE_ROLE_KEY",
   "STRIPE_SECRET_KEY","RESEND_API_KEY","RESEND_FROM_EMAIL","ADMIN_EMAILS","NEXT_PUBLIC_SITE_URL",
+  "BLOB_READ_WRITE_TOKEN",
   "NEXT_PUBLIC_POSTHOG_KEY","NEXT_PUBLIC_POSTHOG_HOST"
 )) { vercel env add $k production }
+# Set NEXT_PUBLIC_SITE_URL to https://dobeu.store for production redirects.
+# Create a Blob store in the Vercel dashboard (Storage → Blob) to obtain BLOB_READ_WRITE_TOKEN.
+vercel --prod
+```
+
+Preview first (recommended):
+```powershell
+vercel
+# smoke the preview URL, then:
 vercel --prod
 ```
 
@@ -87,4 +97,12 @@ Swap Stripe to live keys + live webhook secret; redeploy.
 ## Env vars
 `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`,
 `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `RESEND_API_KEY`, `RESEND_FROM_EMAIL`,
-`ADMIN_EMAILS`, `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_POSTHOG_KEY` (opt), `NEXT_PUBLIC_POSTHOG_HOST` (opt).
+`ADMIN_EMAILS`, `NEXT_PUBLIC_SITE_URL` (production: `https://dobeu.store`),
+`BLOB_READ_WRITE_TOKEN` (Vercel Blob CDN for product images),
+`NEXT_PUBLIC_POSTHOG_KEY` (opt), `NEXT_PUBLIC_POSTHOG_HOST` (opt).
+
+### Product images (Supabase + Blob)
+- Catalog/orders stay in **Supabase**. Store absolute image URLs in `products.images` jsonb.
+- Prefer **Vercel Blob** public URLs (`*.public.blob.vercel-storage.com`) for CDN delivery; Supabase Storage public URLs remain valid.
+- Upload helper: `lib/blob.ts` → `uploadProductImage` (server-only, needs `BLOB_READ_WRITE_TOKEN`).
+- `next/image` allows Blob + `*.supabase.co` storage paths via `images.remotePatterns` in `next.config.ts`.

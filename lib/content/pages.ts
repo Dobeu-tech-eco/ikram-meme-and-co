@@ -44,17 +44,17 @@ const about: LocaleMap<AboutContent> = {
   en: {
     title: "About Ikram & Co.",
     intro:
-      "Ikram & Co. is an artist-first storefront for original one-of-one artwork, limited-edition sticker sheets and prints, and print-on-demand pieces created by Arab artists. We exist to put real work by real people in front of a wider audience — and to make sure the makers are paid fairly for it.",
+      "Ikram & Co. is an artist-first storefront for original one-of-one artwork, limited-edition sticker sheets and prints, and print-on-demand pieces from independent artists. We exist to put real work by real people in front of a wider audience — and to make sure the makers are paid fairly for it.",
     sections: [
       {
         heading: "Our story",
         body:
-          "Ikram (إكرام) means generosity and honouring a guest — the spirit we want every drop to carry. We started small: a handful of artists, a shared belief that Arab art deserves a modern home online, and a refusal to flatten distinctive voices into generic merch. Every piece we list is chosen for craft, character, and the story behind it.",
+          "Ikram (إكرام) means generosity and honouring a guest — the spirit we want every drop to carry. We started small: a handful of artists, a shared belief that original art deserves a modern home online, and a refusal to flatten distinctive voices into generic merch. Every piece we list is chosen for craft, character, and the story behind it.",
       },
       {
         heading: "Our mission",
         body:
-          "We champion working Arab artists. That means fair splits, clear credit, and never treating a one-of-one original as interchangeable stock. When you buy an original, you buy the only one that will ever exist — signed, catalogued, and released just once.",
+          "We champion working independent artists. That means fair splits, clear credit, and never treating a one-of-one original as interchangeable stock. When you buy an original, you buy the only one that will ever exist — signed, catalogued, and released just once.",
       },
       {
         heading: "How drops work",
@@ -71,17 +71,17 @@ const about: LocaleMap<AboutContent> = {
   ar: {
     title: "عن إكرام وشركاه",
     intro:
-      "إكرام وشركاه متجرٌ يضع الفنان في المقام الأول، متخصص في الأعمال الفنية الأصلية الفريدة، وأوراق الملصقات والمطبوعات محدودة الإصدار، والقطع المطبوعة عند الطلب من إبداع فنانين عرب. نسعى لإيصال أعمال حقيقية من أشخاص حقيقيين إلى جمهور أوسع، مع ضمان حصول صانعيها على أجرٍ عادل.",
+      "إكرام وشركاه متجرٌ يضع الفنان في المقام الأول، متخصص في الأعمال الفنية الأصلية الفريدة، وأوراق الملصقات والمطبوعات محدودة الإصدار، والقطع المطبوعة عند الطلب من إبداع فنانين مستقلين. نسعى لإيصال أعمال حقيقية من أشخاص حقيقيين إلى جمهور أوسع، مع ضمان حصول صانعيها على أجرٍ عادل.",
     sections: [
       {
         heading: "قصتنا",
         body:
-          "إكرام تعني الكرم وإجلال الضيف، وهي الروح التي نريد أن يحملها كل إصدار. بدأنا صغارًا: حفنة من الفنانين، وإيمان مشترك بأن الفن العربي يستحق موطنًا عصريًا على الإنترنت، ورفضٌ لاختزال الأصوات المميزة في منتجاتٍ نمطية. كل قطعة نعرضها مختارة بعناية لحرفيّتها وشخصيّتها والقصة التي تقف خلفها.",
+          "إكرام تعني الكرم وإجلال الضيف، وهي الروح التي نريد أن يحملها كل إصدار. بدأنا صغارًا: حفنة من الفنانين، وإيمان مشترك بأن الفن الأصيل يستحق موطنًا عصريًا على الإنترنت، ورفضٌ لاختزال الأصوات المميزة في منتجاتٍ نمطية. كل قطعة نعرضها مختارة بعناية لحرفيّتها وشخصيّتها والقصة التي تقف خلفها.",
       },
       {
         heading: "رسالتنا",
         body:
-          "ندعم الفنانين العرب العاملين. وهذا يعني تقاسمًا عادلًا للأرباح، ونسبةً واضحة للعمل، وألّا نعامل العمل الأصلي الفريد كبضاعة قابلة للاستبدال. حين تشتري عملًا أصليًا، فأنت تقتني النسخة الوحيدة التي ستوجد على الإطلاق، موقّعةً ومفهرسةً وصادرةً مرة واحدة فقط.",
+          "ندعم الفنانين المستقلين العاملين. وهذا يعني تقاسمًا عادلًا للأرباح، ونسبةً واضحة للعمل، وألّا نعامل العمل الأصلي الفريد كبضاعة قابلة للاستبدال. حين تشتري عملًا أصليًا، فأنت تقتني النسخة الوحيدة التي ستوجد على الإطلاق، موقّعةً ومفهرسةً وصادرةً مرة واحدة فقط.",
       },
       {
         heading: "كيف تعمل الإصدارات",
@@ -166,7 +166,7 @@ const faq: LocaleMap<FaqContent> = {
       },
       {
         q: "How do artists get paid, and can I sell with you?",
-        a: "We work on fair, transparent splits with every artist and always credit the maker. If you are an Arab artist interested in a drop, email us — we would love to see your work.",
+        a: "We work on fair, transparent splits with every artist and always credit the maker. If you are an artist interested in a drop, email us — we would love to see your work.",
       },
       {
         q: "Can I request a commission or a custom piece?",
@@ -217,7 +217,7 @@ const faq: LocaleMap<FaqContent> = {
       },
       {
         q: "كيف يتقاضى الفنانون أجورهم، وهل يمكنني البيع معكم؟",
-        a: "نعمل بتقاسم عادل وشفاف مع كل فنان، وننسب العمل دائمًا إلى صانعه. إن كنت فنانًا عربيًا مهتمًا بإصدار، فراسلنا — يسعدنا أن نطّلع على أعمالك.",
+        a: "نعمل بتقاسم عادل وشفاف مع كل فنان، وننسب العمل دائمًا إلى صانعه. إن كنت فنانًا مهتمًا بإصدار، فراسلنا — يسعدنا أن نطّلع على أعمالك.",
       },
       {
         q: "هل يمكنني طلب عمل مخصص أو تكليف فني؟",
