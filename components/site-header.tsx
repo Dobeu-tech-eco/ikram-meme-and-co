@@ -8,7 +8,7 @@ export function SiteHeader() {
   const other = locale === "ar" ? "en" : "ar";
   return (
     <header className="glass-strong fixed top-4 inset-x-4 z-50 flex items-center justify-between px-6 py-3">
-      <Link href="/" className="text-lg font-black tracking-tight">
+      <Link href="/" className="font-display text-lg font-black tracking-tight">
         Ikram &amp; Co. <span className="text-[--color-accent]">◆</span>
       </Link>
       <nav className="flex items-center gap-4 text-sm">

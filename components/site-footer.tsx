@@ -9,7 +9,7 @@ export function SiteFooter() {
       <div className="mx-auto max-w-6xl px-4 py-16">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
           <div>
-            <div className="text-lg font-black tracking-tight">
+            <div className="font-display text-lg font-black tracking-tight">
               Ikram &amp; Co. <span className="text-[--color-accent]">◆</span>
             </div>
             <p className="mt-3 text-sm opacity-70 leading-relaxed">{t("tagline")}</p>

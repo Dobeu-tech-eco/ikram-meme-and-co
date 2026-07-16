@@ -29,8 +29,21 @@
 body {
   background: var(--color-surface);
   color: var(--color-fg);
+  font-family: var(--font-body, system-ui, -apple-system, sans-serif);
 }
 
+/* Distinctive display face (Latin). Arabic falls back to the body face,
+   which supports Arabic and reads cleanly at large sizes. */
+.font-display {
+  font-family: var(--font-display, var(--font-body, system-ui), sans-serif);
+  letter-spacing: -0.02em;
+}
+:where(html[dir="rtl"]) .font-display {
+  font-family: var(--font-body, system-ui, sans-serif);
+  letter-spacing: normal;
+}
+
+/* ---- Glass ---------------------------------------------------------- */
 .glass {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -38,7 +51,6 @@ body {
   border: 1px solid color-mix(in oklab, var(--color-fg) 12%, transparent);
   border-radius: var(--radius-xl);
 }
-
 .glass-strong {
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
@@ -46,4 +58,114 @@ body {
   border: 1px solid color-mix(in oklab, var(--color-accent) 25%, transparent);
   border-radius: var(--radius-xl);
   box-shadow: 0 8px 32px color-mix(in oklab, var(--color-fg) 8%, transparent);
+}
+
+/* ---- Buttons & chips ------------------------------------------------ */
+.btn-accent {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.95rem 1.75rem;
+  border-radius: var(--radius-xl);
+  font-weight: 700;
+  color: white;
+  background: var(--color-accent);
+  box-shadow: 0 10px 30px color-mix(in oklab, var(--color-accent) 45%, transparent);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-accent:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 42px color-mix(in oklab, var(--color-accent) 55%, transparent);
+}
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.95rem 1.5rem;
+  border-radius: var(--radius-xl);
+  font-weight: 700;
+  border: 1px solid color-mix(in oklab, var(--color-fg) 22%, transparent);
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+.btn-ghost:hover {
+  transform: translateY(-2px);
+  background: color-mix(in oklab, var(--color-fg) 6%, transparent);
+  border-color: var(--color-accent);
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-accent);
+  border: 1px solid color-mix(in oklab, var(--color-accent) 35%, transparent);
+  background: color-mix(in oklab, var(--color-accent) 8%, transparent);
+}
+
+/* ---- Atmosphere: gradient mesh + grain ------------------------------ */
+.mesh-a,
+.mesh-b {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+}
+.mesh-a {
+  inset-block-start: -15%;
+  inset-inline-start: -10%;
+  width: 60svh;
+  height: 60svh;
+  background: radial-gradient(circle, var(--color-accent), transparent 68%);
+  opacity: 0.35;
+}
+.mesh-b {
+  inset-block-end: -20%;
+  inset-inline-end: -12%;
+  width: 72svh;
+  height: 72svh;
+  background: radial-gradient(circle, var(--color-accent-2), transparent 68%);
+  opacity: 0.28;
+}
+.grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.4;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---- Motion --------------------------------------------------------- */
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+.float { animation: floaty 7s ease-in-out infinite; }
+
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: none; }
+}
+.reveal { animation: reveal 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.reveal-2 { animation-delay: 0.15s; }
+.reveal-3 { animation-delay: 0.3s; }
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee { overflow: hidden; }
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+:where(html[dir="rtl"]) .marquee-track { animation-direction: reverse; }
+
+@media (prefers-reduced-motion: reduce) {
+  .float, .marquee-track { animation: none; }
+  .reveal { animation: none; opacity: 1; transform: none; }
 }
