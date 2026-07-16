@@ -3,19 +3,29 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --color-surface: oklch(0.98 0.005 90);
-  --color-surface-2: oklch(0.94 0.01 90);
-  --color-fg: oklch(0.2 0.02 270);
-  --color-accent: oklch(0.68 0.21 25);   /* vibrant coral-red */
-  --color-accent-2: oklch(0.75 0.16 160); /* vibrant teal-green */
+  --color-surface: oklch(0.985 0.008 85);
+  --color-surface-2: oklch(0.94 0.012 80);
+  --color-fg: oklch(0.22 0.025 265);
+  --color-accent: oklch(0.62 0.22 28);
+  --color-accent-2: oklch(0.68 0.14 175);
   --radius-xl: 1.25rem;
+  --mesh-a-opacity: 0.42;
+  --mesh-b-opacity: 0.32;
+  --grain-opacity: 0.28;
+  --stage-vignette: color-mix(in oklab, var(--color-fg) 8%, transparent);
+  --stage-depth-shadow: color-mix(in oklab, var(--color-fg) 12%, transparent);
 }
 .dark {
-  --color-surface: oklch(0.17 0.015 270);
-  --color-surface-2: oklch(0.22 0.02 270);
-  --color-fg: oklch(0.95 0.01 90);
-  --color-accent: oklch(0.72 0.19 25);
-  --color-accent-2: oklch(0.78 0.15 160);
+  --color-surface: oklch(0.14 0.02 265);
+  --color-surface-2: oklch(0.2 0.025 270);
+  --color-fg: oklch(0.96 0.01 90);
+  --color-accent: oklch(0.74 0.18 30);
+  --color-accent-2: oklch(0.78 0.12 180);
+  --mesh-a-opacity: 0.55;
+  --mesh-b-opacity: 0.4;
+  --grain-opacity: 0.5;
+  --stage-vignette: color-mix(in oklab, black 55%, transparent);
+  --stage-depth-shadow: color-mix(in oklab, black 45%, transparent);
 }
 
 @theme inline {
@@ -92,6 +102,11 @@ body {
   background: color-mix(in oklab, var(--color-fg) 6%, transparent);
   border-color: var(--color-accent);
 }
+.btn-accent:focus-visible,
+.btn-ghost:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
 .chip {
   display: inline-flex;
   align-items: center;
@@ -113,6 +128,7 @@ body {
   position: absolute;
   border-radius: 9999px;
   filter: blur(80px);
+  will-change: transform;
 }
 .mesh-a {
   inset-block-start: -15%;
@@ -120,7 +136,7 @@ body {
   width: 60svh;
   height: 60svh;
   background: radial-gradient(circle, var(--color-accent), transparent 68%);
-  opacity: 0.35;
+  opacity: var(--mesh-a-opacity);
 }
 .mesh-b {
   inset-block-end: -20%;
@@ -128,14 +144,193 @@ body {
   width: 72svh;
   height: 72svh;
   background: radial-gradient(circle, var(--color-accent-2), transparent 68%);
-  opacity: 0.28;
+  opacity: var(--mesh-b-opacity);
 }
 .grain {
   position: absolute;
   inset: 0;
-  opacity: 0.4;
+  opacity: var(--grain-opacity);
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---- Spatial stage -------------------------------------------------- */
+.spatial-scroll {
+  position: relative;
+  height: 220svh;
+}
+.spatial-sticky {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+  perspective: 1200px;
+  perspective-origin: 50% 45%;
+}
+.spatial-sticky::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: radial-gradient(ellipse at center, transparent 40%, var(--stage-vignette) 100%);
+}
+.spatial-layer {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.spatial-layer--far {
+  z-index: 0;
+}
+.spatial-layer--mid {
+  z-index: 1;
+}
+.spatial-layer--near {
+  z-index: 3;
+}
+.spatial-plane {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(160deg, color-mix(in oklab, var(--color-accent) 18%, transparent), transparent 55%),
+    linear-gradient(340deg, color-mix(in oklab, var(--color-accent-2) 14%, transparent), transparent 50%);
+}
+.spatial-art {
+  position: absolute;
+  inset-block-start: 14%;
+  inset-inline-end: 6%;
+  width: min(42vw, 420px);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: 0 40px 80px var(--stage-depth-shadow);
+  transform: translateZ(80px) rotateY(-8deg) rotateX(4deg);
+}
+:where(html[dir="rtl"]) .spatial-art {
+  inset-inline-end: auto;
+  inset-inline-start: 6%;
+  transform: translateZ(80px) rotateY(8deg) rotateX(4deg);
+}
+.spatial-art-media {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  width: 100%;
+}
+.spatial-copy {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  min-height: 100svh;
+  flex-direction: column;
+  justify-content: center;
+  padding-block: 6rem 5rem;
+  padding-inline: 1rem;
+  max-width: 42rem;
+}
+:where(html[dir="ltr"]) .spatial-copy {
+  margin-inline-start: max(1rem, calc((100% - 72rem) / 2 + 1rem));
+}
+:where(html[dir="rtl"]) .spatial-copy {
+  margin-inline-end: max(1rem, calc((100% - 72rem) / 2 + 1rem));
+}
+
+@supports (animation-timeline: scroll()) {
+  .spatial-scroll {
+    timeline-scope: --spatial;
+  }
+  .spatial-sticky {
+    animation-timeline: view();
+    animation-range: contain 0% contain 100%;
+  }
+  .spatial-layer--far {
+    animation: spatial-far linear both;
+    animation-timeline: view();
+    animation-range: entry 0% exit 100%;
+  }
+  .spatial-layer--mid {
+    animation: spatial-mid linear both;
+    animation-timeline: view();
+    animation-range: entry 0% exit 100%;
+  }
+  .spatial-layer--near {
+    animation: spatial-near linear both;
+    animation-timeline: view();
+    animation-range: entry 0% exit 100%;
+  }
+}
+
+@keyframes spatial-far {
+  from { transform: translate3d(0, 0, -200px) scale(1.15); }
+  to { transform: translate3d(0, -8%, -40px) scale(1); }
+}
+@keyframes spatial-mid {
+  from { transform: translate3d(0, 4%, -80px) scale(1.05); }
+  to { transform: translate3d(0, -12%, 20px) scale(0.98); }
+}
+@keyframes spatial-near {
+  from { transform: translate3d(0, 10%, 40px); opacity: 0.85; }
+  to { transform: translate3d(0, -6%, 120px); opacity: 1; }
+}
+
+/* JS parallax fallback vars (pointer) */
+.spatial-parallax-root {
+  --px: 0;
+  --py: 0;
+}
+.spatial-parallax-root .mesh-a {
+  transform: translate3d(calc(var(--px) * -18px), calc(var(--py) * -12px), 0);
+}
+.spatial-parallax-root .mesh-b {
+  transform: translate3d(calc(var(--px) * 22px), calc(var(--py) * 16px), 0);
+}
+.spatial-parallax-root .spatial-art {
+  transform: translate3d(calc(var(--px) * 14px), calc(var(--py) * 10px), 80px) rotateY(-8deg) rotateX(4deg);
+}
+:where(html[dir="rtl"]) .spatial-parallax-root .spatial-art {
+  transform: translate3d(calc(var(--px) * 14px), calc(var(--py) * 10px), 80px) rotateY(8deg) rotateX(4deg);
+}
+
+@media (max-width: 768px) {
+  .spatial-scroll { height: auto; }
+  .spatial-sticky {
+    position: relative;
+    height: auto;
+    min-height: 100svh;
+    perspective: none;
+  }
+  .spatial-layer--far,
+  .spatial-layer--mid,
+  .spatial-layer--near {
+    animation: none !important;
+    transform: none !important;
+    position: relative;
+    inset: auto;
+  }
+  .spatial-layer--far { position: absolute; inset: 0; }
+  .spatial-copy {
+    margin-inline: 1rem !important;
+    max-width: none;
+    padding-block-start: 7rem;
+  }
+  .spatial-art {
+    position: relative;
+    inset: auto;
+    width: min(100%, 360px);
+    margin-inline: auto;
+    margin-block: 1.5rem 0;
+    transform: none;
+    order: -1;
+  }
+  .spatial-parallax-root .spatial-art {
+    transform: none;
+  }
+  .spatial-layer--near {
+    display: flex;
+    flex-direction: column;
+    min-height: 100svh;
+    justify-content: center;
+  }
 }
 
 /* ---- Motion --------------------------------------------------------- */
@@ -168,4 +363,25 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .float, .marquee-track { animation: none; }
   .reveal { animation: none; opacity: 1; transform: none; }
+  .spatial-scroll { height: auto; }
+  .spatial-sticky { position: relative; height: auto; min-height: 100svh; }
+  .spatial-layer--far,
+  .spatial-layer--mid,
+  .spatial-layer--near {
+    animation: none !important;
+    transform: none !important;
+  }
+  .spatial-parallax-root .mesh-a,
+  .spatial-parallax-root .mesh-b,
+  .spatial-parallax-root .spatial-art {
+    transform: none;
+  }
+  .spatial-art {
+    transform: none;
+    position: relative;
+    inset: auto;
+    width: min(100%, 360px);
+    margin-inline: auto;
+    margin-block-end: 2rem;
+  }
 }

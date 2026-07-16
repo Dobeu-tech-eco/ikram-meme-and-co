@@ -1,6 +1,8 @@
 {
   "nav": { "shop": "Shop", "artists": "Artists", "home": "Home" },
   "hero": {
+    "brand": "Ikram & Co.",
+    "brandGhost": "IKRAM",
     "eyebrow": "Independent art, dropped in batches",
     "title": "Own the original.",
     "subtitle": "One-of-one artworks, limited editions, and sticker drops — made in small batches and never reprinted. When it's gone, it's gone.",

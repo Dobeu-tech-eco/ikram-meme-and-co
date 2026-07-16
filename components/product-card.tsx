@@ -1,6 +1,10 @@
+"use client";
+
+import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import type { ProductRow } from "@/lib/catalog";
+import { resolveProductImageUrl } from "@/lib/media";
 
 const tint: Record<string, string> = {
   original:
@@ -14,16 +18,27 @@ export function ProductCard({ p }: { p: ProductRow }) {
   const locale = useLocale();
   const t = useTranslations("product");
   const sold = p.status === "sold" || (p.fulfillment_type === "edition" && p.quantity < 1);
+  const imageUrl = resolveProductImageUrl(p.images);
   return (
     <Link
       href={`/product/${p.slug}`}
       className="glass group block overflow-hidden transition duration-300 hover:-translate-y-1"
     >
       <div className="relative aspect-square overflow-hidden bg-[--color-surface-2]">
-        <div
-          className="absolute inset-0 transition-transform duration-700 group-hover:scale-110"
-          style={{ background: tint[p.fulfillment_type] ?? tint.original }}
-        />
+        {imageUrl ? (
+          <Image
+            src={imageUrl}
+            alt={locale === "ar" ? p.title_ar : p.title_en}
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+        ) : (
+          <div
+            className="absolute inset-0 transition-transform duration-700 group-hover:scale-110"
+            style={{ background: tint[p.fulfillment_type] ?? tint.original }}
+          />
+        )}
         {p.fulfillment_type === "original" && !sold && (
           <span className="absolute end-3 top-3 rounded-full bg-[--color-fg] px-2.5 py-0.5 text-[0.65rem] font-bold uppercase tracking-wider text-[--color-surface]">
             1 / 1
