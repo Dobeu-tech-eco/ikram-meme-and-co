@@ -1,6 +1,9 @@
+"use client";
+
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import { SubscribeForm } from "@/components/subscribe-form";
+import { BrandLogo } from "@/components/brand-logo";
 
 export function SiteFooter() {
   const t = useTranslations("footer");
@@ -9,9 +12,7 @@ export function SiteFooter() {
       <div className="mx-auto max-w-6xl px-4 py-16">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
           <div>
-            <div className="font-display text-lg font-black tracking-tight">
-              Ikram &amp; Co. <span className="text-[--color-accent]">◆</span>
-            </div>
+            <BrandLogo />
             <p className="mt-3 text-sm opacity-70 leading-relaxed">{t("tagline")}</p>
           </div>
 

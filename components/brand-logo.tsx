@@ -20,8 +20,8 @@ export function BrandLogo({ compact = false, className = "" }: BrandLogoProps) {
         <svg viewBox="0 0 40 40" width="100%" height="100%" fill="none">
           <defs>
             <linearGradient id={gradId} x1="6" y1="4" x2="34" y2="36" gradientUnits="userSpaceOnUse">
-              <stop stopColor="var(--color-accent, #d97757)" />
-              <stop offset="1" stopColor="var(--color-accent-2, #6a9bcc)" />
+              <stop stopColor="var(--color-accent, #c9922a)" />
+              <stop offset="1" stopColor="var(--color-accent-2, #2f7a6b)" />
             </linearGradient>
           </defs>
           <rect
@@ -30,7 +30,7 @@ export function BrandLogo({ compact = false, className = "" }: BrandLogoProps) {
             width="36"
             height="36"
             rx="11"
-            fill="color-mix(in oklab, var(--color-surface, #faf9f5) 35%, transparent)"
+            fill="color-mix(in oklab, var(--color-surface, #f3f5f7) 35%, transparent)"
           />
           <path
             d="M20 7.5L30.5 20L20 32.5L9.5 20L20 7.5Z"
