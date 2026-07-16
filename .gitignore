@@ -34,6 +34,11 @@ yarn-error.log*
 .env*
 !.env.example
 
+# ruflo / claude-flow local artifacts (contain federation private keys — never commit)
+.claude-flow/
+.swarm/
+.claude/
+
 # vercel
 .vercel
 
