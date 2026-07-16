@@ -1,6 +1,6 @@
 name: CI
 on:
-  push: { branches: [main] }
+  push: { branches: [master, main] }
   pull_request:
 jobs:
   verify:
@@ -12,4 +12,6 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version-file: .nvmrc, cache: pnpm }
       - run: pnpm install --frozen-lockfile
-      - run: pnpm verify
+      - run: pnpm type-check
+      - run: pnpm lint
+      - run: pnpm test:ci

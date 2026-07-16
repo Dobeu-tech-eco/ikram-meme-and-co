@@ -1,5 +1,7 @@
 import { pages } from "@/lib/content/pages";
 
+export const dynamic = "force-static";
+
 export default async function AboutPage({
   params,
 }: {

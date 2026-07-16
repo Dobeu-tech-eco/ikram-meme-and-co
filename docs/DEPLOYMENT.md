@@ -6,6 +6,14 @@ credentials for the `dobeu-tech-eco` org, Vercel, Supabase, Stripe, or Resend.
 
 Repo: `C:\Users\JeremyWilliams\repos\ikram-meme-and-co` · Next.js 16 · pnpm.
 
+## Toolchain + CI/CD notes
+
+- **Node** is pinned to `24.x` (`.nvmrc` + `package.json` `engines`). **pnpm** is pinned via `"packageManager": "pnpm@10.28.0"`.
+- **GitHub CI** (`.github/workflows/ci.yml`) runs `type-check` + `lint` + `test:ci` only — **no** `next build`. Vercel owns production/preview builds.
+- Local/pre-release full gate remains `pnpm verify` (includes build).
+- Prefer: ship a **preview** → smoke (`node scripts/verify-deployment.mjs <preview-url>`) → `vercel promote <preview-url>` instead of rebuilding straight to prod when the artifact is already validated.
+- `.vercelignore` excludes `e2e/`, `docs/`, `.superpowers/`, and checkpoint trees from upload.
+
 ## 0. Clean the delivery artifacts (once)
 ```powershell
 cd C:\Users\JeremyWilliams\repos\ikram-meme-and-co
@@ -29,7 +37,7 @@ git remote get-url origin 2>$null; if ($LASTEXITCODE -ne 0) { git remote add ori
 gh repo create dobeu-tech-eco/ikram-meme-and-co --private --source=. --remote=origin --push
 #   If the repo already exists, skip gh and just:  git push -u origin main
 ```
-CI (`.github/workflows/ci.yml`) runs `pnpm verify` on every push.
+CI (`.github/workflows/ci.yml`) runs type-check + lint + test:ci on every push/PR (no build).
 
 ## 3. Production Supabase
 ```powershell
