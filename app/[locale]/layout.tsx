@@ -8,6 +8,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { AnalyticsProvider } from "@/components/analytics-provider";
 import { CookieConsent } from "@/components/cookie-consent";
+import { ScrollAtmosphere } from "@/components/scroll-atmosphere";
 import { Syne, Rubik } from "next/font/google";
 import "../globals.css";
 
@@ -61,9 +62,12 @@ export default async function LocaleLayout({
         <ThemeProvider>
           <NextIntlClientProvider>
             <AnalyticsProvider />
-            <SiteHeader />
-            {children}
-            <SiteFooter />
+            <ScrollAtmosphere />
+            <div className="site-shell">
+              <SiteHeader />
+              {children}
+              <SiteFooter />
+            </div>
             <CookieConsent />
           </NextIntlClientProvider>
         </ThemeProvider>
