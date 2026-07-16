@@ -1,5 +1,9 @@
 {
   "nav": { "shop": "Shop", "artists": "Artists", "home": "Home" },
+  "a11y": {
+    "skipToContent": "Skip to content",
+    "primaryNav": "Primary"
+  },
   "hero": {
     "brand": "Ikram & Co.",
     "brandGhost": "IKRAM",

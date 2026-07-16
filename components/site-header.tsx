@@ -8,6 +8,7 @@ import { useScrolled } from "@/lib/hooks/use-scrolled";
 
 export function SiteHeader() {
   const t = useTranslations("nav");
+  const tA11y = useTranslations("a11y");
   const locale = useLocale();
   const other = locale === "ar" ? "en" : "ar";
   const scrolled = useScrolled();
@@ -20,7 +21,7 @@ export function SiteHeader() {
       <Link href="/" className="site-header__brand" aria-label={locale === "ar" ? "إكرام" : "Ikram & Co."}>
         <BrandLogo compact={scrolled} />
       </Link>
-      <nav className="site-header__nav" aria-label="Primary">
+      <nav className="site-header__nav" aria-label={tA11y("primaryNav")}>
         <Link href="/shop" className="site-header__link">
           {t("shop")}
         </Link>

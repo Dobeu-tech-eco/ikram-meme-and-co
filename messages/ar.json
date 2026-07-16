@@ -1,5 +1,9 @@
 {
   "nav": { "shop": "المتجر", "artists": "الفنانون", "home": "الرئيسية" },
+  "a11y": {
+    "skipToContent": "تخطّ إلى المحتوى",
+    "primaryNav": "التنقل الرئيسي"
+  },
   "hero": {
     "brand": "إكرام وشركاه",
     "brandGhost": "IKRAM",

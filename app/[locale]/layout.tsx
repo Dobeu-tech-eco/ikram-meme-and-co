@@ -9,6 +9,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { AnalyticsProvider } from "@/components/analytics-provider";
 import { CookieConsent } from "@/components/cookie-consent";
 import { ScrollAtmosphere } from "@/components/scroll-atmosphere";
+import { SkipLink } from "@/components/skip-link";
 import { Syne, Rubik } from "next/font/google";
 import "../globals.css";
 
@@ -62,10 +63,12 @@ export default async function LocaleLayout({
         <ThemeProvider>
           <NextIntlClientProvider>
             <AnalyticsProvider />
+            <SkipLink />
             <ScrollAtmosphere />
             <div className="site-shell">
               <SiteHeader />
-              {children}
+              {/* Pages own <main>; skip target is a wrapper to avoid nested landmarks */}
+              <div id="main-content">{children}</div>
               <SiteFooter />
             </div>
             <CookieConsent />
