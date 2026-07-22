@@ -3,6 +3,7 @@ import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { localeDir } from "@/lib/i18n";
+import { fontVariableClassName } from "@/lib/fonts";
 import { ThemeProvider } from "@/components/theme-provider";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -38,8 +39,13 @@ export default async function LocaleLayout({
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
   return (
-    <html lang={locale} dir={localeDir(locale)} suppressHydrationWarning>
-      <body>
+    <html
+      lang={locale}
+      dir={localeDir(locale)}
+      className={fontVariableClassName}
+      suppressHydrationWarning
+    >
+      <body className="min-h-svh antialiased">
         <ThemeProvider>
           <NextIntlClientProvider>
             <AnalyticsProvider />

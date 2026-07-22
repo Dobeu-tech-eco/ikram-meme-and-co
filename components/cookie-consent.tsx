@@ -27,26 +27,27 @@ export function CookieConsent() {
   if (!visible) return null;
 
   return (
-    <div className="glass-strong fixed bottom-4 inset-x-4 z-50 flex flex-wrap items-center justify-between gap-3 px-6 py-4">
+    <div className="panel-raised fixed inset-x-4 bottom-4 z-50 flex flex-wrap items-center justify-between gap-3 px-6 py-4 shadow-sm">
       <p className="text-sm">{t("message")}</p>
       <div className="flex gap-2">
         <button
+          type="button"
           onClick={() => {
             writeConsent("accepted");
             setVisible(false);
             void initAnalytics(true);
           }}
-          className="rounded-[--radius-xl] px-4 py-2 text-sm font-bold text-white"
-          style={{ background: "var(--color-accent)" }}
+          className="btn-primary px-4 py-2 text-sm"
         >
           {t("accept")}
         </button>
         <button
+          type="button"
           onClick={() => {
             writeConsent("declined");
             setVisible(false);
           }}
-          className="glass px-4 py-2 text-sm"
+          className="chip"
         >
           {t("decline")}
         </button>

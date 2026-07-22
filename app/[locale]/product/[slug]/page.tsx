@@ -3,6 +3,9 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
 import { getProductBySlug } from "@/lib/catalog";
 import { BuyNowButton } from "@/components/buy-now-button";
+import { ProductImage } from "@/components/product-image";
+import { ProductScarcity, ProductTypeBadge } from "@/components/product-type-badge";
+import { isProductBuyable } from "@/lib/product-merch";
 import { Link } from "@/i18n/navigation";
 import type { Db } from "@/lib/db-types";
 
@@ -17,29 +20,40 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   const locale = await getLocale();
   const t = await getTranslations("product");
   const isAr = locale === "ar";
-  const sold = p.status === "sold" || (p.fulfillment_type === "edition" && p.quantity < 1);
-  const buyable = !sold && (p.status === "available" || (p.fulfillment_type === "edition" && p.quantity > 0));
+  const title = isAr ? p.title_ar : p.title_en;
+  const buyable = isProductBuyable(p);
   const artist = p.artists ?? null;
 
   return (
-    <main className="mx-auto max-w-5xl px-4 pt-28 pb-24">
+    <main className="mx-auto max-w-5xl px-4 pb-24 pt-28 sm:px-6">
       <div className="grid gap-10 md:grid-cols-2">
-        <div className="glass aspect-square bg-[--color-surface-2]" />
+        <ProductImage
+          images={p.images}
+          alt={title}
+          priority
+          sizes="(max-width: 768px) 100vw, 50vw"
+        />
         <div>
-          <h1 className="text-3xl font-black">{isAr ? p.title_ar : p.title_en}</h1>
+          <div className="mb-3">
+            <ProductTypeBadge p={p} />
+          </div>
+          <h1 className="font-display text-3xl font-semibold sm:text-4xl">{title}</h1>
           {artist && (
-            <p className="mt-2 opacity-80">
+            <p className="mt-2 text-[--color-muted]">
               {t("by")}{" "}
-              <Link href={`/artists/${artist.slug}`} className="font-bold underline">
+              <Link href={`/artists/${artist.slug}`} className="font-semibold text-[--color-fg] underline-offset-4 hover:underline">
                 {isAr ? artist.name_ar : artist.name_en}
               </Link>
             </p>
           )}
-          <p className="mt-4 text-2xl font-black text-[--color-accent]">
+          <p className="mt-4 text-2xl font-semibold tabular-nums">
             ${(p.price_cents / 100).toFixed(0)}
           </p>
+          <div className="mt-2">
+            <ProductScarcity p={p} />
+          </div>
           {(isAr ? p.description_ar : p.description_en) && (
-            <p className="mt-4 leading-relaxed opacity-90">
+            <p className="mt-6 leading-relaxed text-[--color-muted]">
               {isAr ? p.description_ar : p.description_en}
             </p>
           )}
@@ -47,10 +61,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             {buyable ? (
               <BuyNowButton productId={p.id} />
             ) : (
-              <span
-                className="inline-block rounded-full px-4 py-2 text-sm font-black text-white"
-                style={{ background: "var(--color-accent)" }}
-              >
+              <span className="inline-block border border-[--color-border] px-4 py-2 text-sm font-semibold tracking-wide text-[--color-accent]">
                 {t("sold")}
               </span>
             )}

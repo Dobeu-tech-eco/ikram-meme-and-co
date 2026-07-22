@@ -11,6 +11,7 @@ export function BuyNowButton({ productId }: { productId: string }) {
   return (
     <div>
       <button
+        type="button"
         disabled={pending}
         onClick={() =>
           start(async () => {
@@ -20,12 +21,11 @@ export function BuyNowButton({ productId }: { productId: string }) {
             }
           })
         }
-        className="w-full rounded-[--radius-xl] px-8 py-4 text-lg font-black text-white disabled:opacity-50"
-        style={{ background: "var(--color-accent)" }}
+        className="btn-primary w-full px-8 py-4 text-lg disabled:opacity-50"
       >
         {pending ? "…" : t("buyNow")}
       </button>
-      {error && <p className="mt-2 text-sm font-bold text-[--color-accent]">{error}</p>}
+      {error && <p className="mt-2 text-sm font-semibold text-[--color-accent]">{error}</p>}
     </div>
   );
 }

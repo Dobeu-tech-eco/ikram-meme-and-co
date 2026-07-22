@@ -4,21 +4,32 @@ import { ThemeToggle } from "@/components/theme-toggle";
 
 export function SiteHeader() {
   const t = useTranslations("nav");
+  const brand = useTranslations("brand");
   const locale = useLocale();
   const other = locale === "ar" ? "en" : "ar";
   return (
-    <header className="glass-strong fixed top-4 inset-x-4 z-50 flex items-center justify-between px-6 py-3">
-      <Link href="/" className="text-lg font-black tracking-tight">
-        Ikram &amp; Co. <span className="text-[--color-accent]">◆</span>
-      </Link>
-      <nav className="flex items-center gap-4 text-sm">
-        <Link href="/shop">{t("shop")}</Link>
-        <Link href="/artists">{t("artists")}</Link>
-        <a href={`/${other}`} className="glass px-3 py-2" aria-label="Switch language">
-          {other === "ar" ? "عربي" : "EN"}
-        </a>
-        <ThemeToggle />
-      </nav>
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-[--color-border] bg-[color-mix(in_oklab,var(--color-surface)_92%,transparent)] backdrop-blur-sm">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
+        <Link href="/" className="font-display text-lg font-semibold tracking-tight sm:text-xl">
+          {brand("name")}
+        </Link>
+        <nav className="flex items-center gap-3 text-sm sm:gap-5">
+          <Link href="/shop" className="hover:text-[--color-accent]">
+            {t("shop")}
+          </Link>
+          <Link href="/artists" className="hover:text-[--color-accent]">
+            {t("artists")}
+          </Link>
+          <a
+            href={`/${other}`}
+            className="chip"
+            aria-label={other === "ar" ? "العربية" : "English"}
+          >
+            {other === "ar" ? "عربي" : "EN"}
+          </a>
+          <ThemeToggle />
+        </nav>
+      </div>
     </header>
   );
 }

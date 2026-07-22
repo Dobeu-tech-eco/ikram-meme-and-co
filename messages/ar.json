@@ -1,7 +1,35 @@
 {
+  "brand": {
+    "name": "إكرام",
+    "nameShort": "إكرام"
+  },
   "nav": { "shop": "المتجر", "artists": "الفنانون", "home": "الرئيسية" },
-  "hero": { "title": "قطعة واحدة فقط. من فنانين عرب حقيقيين.", "cta": "تسوّق الإصدار" },
-  "product": { "buyNow": "اشترِ الآن", "sold": "بيعت", "justSold": "اشترى أحدهم هذه القطعة للتو.", "by": "بواسطة" },
+  "hero": {
+    "title": "قطعة واحدة فقط. من فنانين عرب حقيقيين.",
+    "cta": "تسوّق الإصدار",
+    "featuredLabel": "عمل مميز"
+  },
+  "theme": { "light": "فاتح", "dark": "داكن", "toggle": "تبديل المظهر" },
+  "shop": {
+    "filterAll": "الكل",
+    "filterOriginal": "أصلية",
+    "filterEdition": "إصدارات",
+    "filterPod": "طباعة عند الطلب",
+    "empty": "لا توجد أعمال في هذه الفئة بعد."
+  },
+  "product": {
+    "buyNow": "اشترِ الآن",
+    "sold": "بيعت",
+    "justSold": "اشترى أحدهم هذه القطعة للتو.",
+    "by": "بواسطة",
+    "typeOriginal": "أصلية",
+    "typeEdition": "إصدار محدود",
+    "typePod": "طباعة عند الطلب",
+    "oneOfOne": "١ من ١",
+    "editionLeft": "{count} متبقية",
+    "madeToOrder": "تُصنع عند الطلب",
+    "imageUnavailable": "العمل الفني قريبًا"
+  },
   "footer": {
     "subscribe": "اشترك في إعلانات الإصدارات",
     "emailPlaceholder": "بريدك الإلكتروني",
@@ -22,5 +50,9 @@
     "shipping": "الشحن",
     "rights": "© 2026 Dobeu Tech Solutions LLC. جميع الحقوق محفوظة."
   },
-  "consent": { "message": "نستخدم ملفات تعريف الارتباط لفهم ما يلقى صدى لديك، بموافقتك فقط.", "accept": "موافق", "decline": "رفض" }
+  "consent": { "message": "نستخدم ملفات تعريف الارتباط لفهم ما يلقى صدى لديك، بموافقتك فقط.", "accept": "موافق", "decline": "رفض" },
+  "artists": {
+    "available": "أعمال متاحة",
+    "soldArchive": "أرشيف المبيعات"
+  }
 }

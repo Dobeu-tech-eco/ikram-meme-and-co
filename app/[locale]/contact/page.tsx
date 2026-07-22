@@ -14,7 +14,7 @@ export default async function ContactPage({
       <h1 className="text-3xl font-black">{c.title}</h1>
       <p className="mt-4 text-lg leading-relaxed opacity-80">{c.intro}</p>
 
-      <div className="glass mt-10 p-6">
+      <div className="panel mt-10 p-6">
         <p className="text-sm font-bold uppercase tracking-wide opacity-60">
           {c.emailLabel}
         </p>

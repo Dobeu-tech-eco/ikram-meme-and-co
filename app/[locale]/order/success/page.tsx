@@ -7,7 +7,7 @@ export default async function OrderSuccessPage() {
   const isAr = locale === "ar";
   return (
     <main className="mx-auto flex min-h-svh max-w-2xl flex-col items-center justify-center px-4 text-center">
-      <div className="glass p-10">
+      <div className="panel p-10">
         <h1 className="text-3xl font-black">{isAr ? "شكراً لك!" : "Thank you!"}</h1>
         <p className="mt-4 opacity-90">
           {isAr

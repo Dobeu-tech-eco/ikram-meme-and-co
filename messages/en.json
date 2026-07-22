@@ -1,7 +1,35 @@
 {
+  "brand": {
+    "name": "Ikram & Co.",
+    "nameShort": "Ikram"
+  },
   "nav": { "shop": "Shop", "artists": "Artists", "home": "Home" },
-  "hero": { "title": "One of one. From real Arab artists.", "cta": "Shop the drop" },
-  "product": { "buyNow": "Buy now", "sold": "SOLD", "justSold": "Someone just bought this piece.", "by": "by" },
+  "hero": {
+    "title": "One of one. From real Arab artists.",
+    "cta": "Shop the drop",
+    "featuredLabel": "Featured work"
+  },
+  "theme": { "light": "Light", "dark": "Dark", "toggle": "Toggle theme" },
+  "shop": {
+    "filterAll": "All",
+    "filterOriginal": "Originals",
+    "filterEdition": "Editions",
+    "filterPod": "Print on demand",
+    "empty": "No works in this category yet."
+  },
+  "product": {
+    "buyNow": "Buy now",
+    "sold": "Sold",
+    "justSold": "Someone just bought this piece.",
+    "by": "by",
+    "typeOriginal": "Original",
+    "typeEdition": "Limited edition",
+    "typePod": "Print on demand",
+    "oneOfOne": "1 of 1",
+    "editionLeft": "{count} remaining",
+    "madeToOrder": "Made to order",
+    "imageUnavailable": "Artwork forthcoming"
+  },
   "footer": {
     "subscribe": "Get drop announcements",
     "emailPlaceholder": "your@email.com",
@@ -22,5 +50,9 @@
     "shipping": "Shipping",
     "rights": "© 2026 Dobeu Tech Solutions LLC. All rights reserved."
   },
-  "consent": { "message": "We use cookies to understand what resonates. Only with your OK.", "accept": "Accept", "decline": "Decline" }
+  "consent": { "message": "We use cookies to understand what resonates. Only with your OK.", "accept": "Accept", "decline": "Decline" },
+  "artists": {
+    "available": "Available works",
+    "soldArchive": "Sold archive"
+  }
 }

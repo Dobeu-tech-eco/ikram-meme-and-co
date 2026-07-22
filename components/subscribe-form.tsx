@@ -24,10 +24,10 @@ export function SubscribeForm() {
   }
 
   return (
-    <div className="glass p-6">
-      <h3 className="mb-3 font-bold">{t("subscribe")}</h3>
+    <div className="panel p-6">
+      <h3 className="mb-3 font-semibold">{t("subscribe")}</h3>
       {done ? (
-        <p className="text-sm font-bold text-[--color-accent]">{t("subscribed")}</p>
+        <p className="text-sm font-semibold text-[--color-accent]">{t("subscribed")}</p>
       ) : (
         <form onSubmit={onSubmit} className="flex flex-wrap gap-2">
           <input
@@ -35,14 +35,9 @@ export function SubscribeForm() {
             type="email"
             required
             placeholder={t("emailPlaceholder")}
-            className="flex-1 rounded-[--radius-xl] border px-4 py-2"
+            className="flex-1 rounded-[--radius-md] border border-[--color-border] bg-[--color-surface] px-4 py-2"
           />
-          <button
-            type="submit"
-            disabled={pending}
-            className="rounded-[--radius-xl] px-6 py-2 font-bold text-white disabled:opacity-50"
-            style={{ background: "var(--color-accent)" }}
-          >
+          <button type="submit" disabled={pending} className="btn-primary px-6 py-2 disabled:opacity-50">
             {pending ? "…" : "→"}
           </button>
         </form>

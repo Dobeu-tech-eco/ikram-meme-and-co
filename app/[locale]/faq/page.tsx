@@ -15,7 +15,7 @@ export default async function FaqPage({
       <p className="mt-4 text-lg leading-relaxed opacity-80">{c.intro}</p>
       <div className="mt-10">
         {c.items.map((item) => (
-          <details key={item.q} className="glass p-4 mt-3">
+          <details key={item.q} className="panel p-4 mt-3">
             <summary className="font-bold cursor-pointer">{item.q}</summary>
             <p className="mt-2 opacity-80 leading-relaxed">{item.a}</p>
           </details>
