@@ -34,6 +34,21 @@ export type Database = {
   }
   public: {
     Tables: {
+      stripe_events: {
+        Row: {
+          event_id: string
+          received_at: string
+        }
+        Insert: {
+          event_id: string
+          received_at?: string
+        }
+        Update: {
+          event_id?: string
+          received_at?: string
+        }
+        Relationships: []
+      }
       artists: {
         Row: {
           bio_ar: string | null
