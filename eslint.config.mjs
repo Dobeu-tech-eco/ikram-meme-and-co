@@ -12,6 +12,11 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Agent tooling, not app code: ruflo/Claude hook helpers are CommonJS by
+    // design and shouldn't be held to the app's TS/ESM rules.
+    ".claude/**",
+    ".claude-flow/**",
+    ".worktrees/**",
   ]),
 ]);
 
