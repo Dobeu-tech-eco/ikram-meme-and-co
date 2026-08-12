@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ikram-meme-and-co — Ikram & Co. gallery store (dobeu.store)
 
-## Getting Started
+Production: https://dobeu.store · Vercel: `ikram-meme-and-co` (team dobeutechnology) · Status: active
 
-First, run the development server:
+## What it does
+
+Bilingual (EN/AR) art-gallery storefront selling originals, editions, and print-on-demand merchandise for Ikram & Co. Customers browse the artwork-first catalog, check out via Stripe, and receive transactional email via Resend. Includes admin surfaces gated by `ADMIN_EMAILS` and legal/info pages in both languages.
+
+## Stack
+
+Next.js 16 (App Router, Turbopack) · React 19 · Supabase (`@supabase/ssr`) for data + auth · Stripe Checkout + webhooks · Resend · next-intl (EN/AR) · Tailwind 4 · PostHog · Vitest + Playwright · pnpm 10 / Node 24.
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
+cp .env.example .env.local      # fill in Supabase/Stripe/Resend values
+pnpm dev                        # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Scripts
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Command | What it does |
+|---|---|
+| `pnpm dev` / `pnpm build` / `pnpm start` | Next.js dev / production build / serve |
+| `pnpm verify` | type-check + lint + unit tests + build (CI gate) |
+| `pnpm test` / `pnpm test:e2e` | Vitest / Playwright |
+| `pnpm verify:deploy` | post-deploy smoke check |
+| `pnpm db:types` | regenerate `lib/database.types.ts` from local Supabase |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Deployment
 
-## Learn More
+Push → Vercel preview; promote to production (promote-over-redeploy convention, see `docs/`). Env vars live in Vercel project settings — keep `.env.example` in sync the day a new var is read. Rollback: Vercel → previous READY production deployment → Promote.
 
-To learn more about Next.js, take a look at the following resources:
+## Analytics
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+PostHog is live today. Amplitude rubric verdict per `../_standards/amplitude-instrumentation-policy.md`: **INSTALL** (e-commerce funnel + Session Replay) — pending an explicit decision to run Amplitude alongside or instead of PostHog. Don't add a second analytics SDK without recording that decision here.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Documentation
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`docs/` — deploy/perf hygiene plans and design notes. SECURITY: dependabot SLA 7 days; dependency audit 2026-07-23 found 6 high (fixed by Next 16.2.11 bump + sharp/postcss patches).

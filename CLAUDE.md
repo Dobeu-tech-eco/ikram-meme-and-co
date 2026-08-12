@@ -10,8 +10,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-"Arab Stickers Co." — a bilingual (English / Arabic + RTL) e-commerce storefront selling original art,
-limited editions, and print-on-demand. Public catalog + Stripe checkout + a service-role admin dashboard.
+"Ikram & Co." (Arabic: إكرام; operated by Dobeu Tech Solutions LLC) — a bilingual (English / Arabic + RTL)
+e-commerce storefront selling original art by Arab artists, limited editions, and print-on-demand.
+Public catalog + Stripe checkout + a service-role admin dashboard.
 Stack: Next.js 16 App Router, React 19, next-intl v4, Supabase (Postgres + Auth + Storage), Stripe,
 Resend (email), PostHog (consent-gated analytics), Tailwind v4, Zod.
 
@@ -43,6 +44,10 @@ Supabase migrations/seed and the full deploy runbook live in `docs/DEPLOYMENT.md
 `i18n/request.ts`, `i18n/navigation.ts`; strings in `messages/{en,ar}.json`. The plugin is wired in
 `next.config.ts`. `app/[locale]/layout.tsx` sets `<html dir>` via `localeDir()` in `lib/i18n.ts`
 (`ar` → `rtl`). Never hardcode UI copy — add keys to both message files.
+Locale routing runs in **`proxy.ts`** (Next 16's rename of `middleware.ts` — the export is
+`proxy`, not `middleware`): `createMiddleware(routing)` with a matcher that **excludes**
+`api|admin|auth|_next|_vercel` and any path with a file extension, so admin/API/auth routes
+bypass locale rewriting. See `docs/adr/ADR-003`.
 
 **Supabase access — two clients (`lib/supabase/server.ts`).**
 - `createClient()` — cookie-bound anon SSR client for public reads and reading the logged-in user.

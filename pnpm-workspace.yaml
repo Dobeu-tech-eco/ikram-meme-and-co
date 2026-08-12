@@ -1,3 +1,9 @@
 ignoredBuiltDependencies:
   - sharp
   - unrs-resolver
+
+# Security overrides (audit remediation 2026-07-25) — force patched transitive
+# versions; same-major bumps. Re-audit with `pnpm audit --prod`.
+overrides:
+  sharp: ">=0.35.0"
+  postcss: ">=8.5.10"
