@@ -22,8 +22,14 @@ CI=true pnpm install --frozen-lockfile
 echo "==> Installing system packages for local Supabase (Docker-in-VM)"
 if ! command -v dockerd >/dev/null 2>&1 || ! command -v fuse-overlayfs >/dev/null 2>&1; then
   sudo apt-get update -qq
+  # The base image already ships /etc/fuse.conf, so the fuse3 package triggers an
+  # interactive conffile prompt that aborts a non-interactive install. Force-keep
+  # the existing config files so apt configures cleanly without a TTY.
   sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommends \
+    -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confold \
     docker.io fuse-overlayfs iptables uidmap
+  # Belt-and-suspenders: finish configuring anything left half-installed.
+  sudo DEBIAN_FRONTEND=noninteractive dpkg --configure -a --force-confold
 fi
 
 echo "==> Configuring FUSE + Docker daemon"
