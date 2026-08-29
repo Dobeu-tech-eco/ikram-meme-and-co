@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # Per-boot startup for the Ikram & Co. Cloud Agent environment.
-# Brings up Docker + the local Supabase stack and writes .env.local, then returns.
-# The Next.js dev server runs separately as a persistent terminal (`pnpm dev`).
+# Brings up Docker + the local Supabase stack, writes .env.local, then hands off
+# to the Next.js dev server in the foreground (stays attached for the agent).
 #
-# Idempotent: safe to run repeatedly; a no-op when things are already up.
+# The setup portion is idempotent: safe to run repeatedly; a no-op when already up.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
@@ -32,4 +32,5 @@ pnpm supabase start
 echo "==> Writing .env.local from the running Supabase stack"
 ./scripts/setup-local-env.sh
 
-echo "==> start.sh complete — run 'pnpm dev' (started automatically as a terminal)"
+echo "==> Starting Next.js dev server (foreground) on http://localhost:3000"
+exec pnpm dev
