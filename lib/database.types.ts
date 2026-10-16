@@ -34,6 +34,30 @@ export type Database = {
   }
   public: {
     Tables: {
+      stripe_events: {
+        Row: {
+          claimed_at: string
+          event_id: string
+          processed_at: string | null
+          received_at: string
+          status: string
+        }
+        Insert: {
+          claimed_at?: string
+          event_id: string
+          processed_at?: string | null
+          received_at?: string
+          status?: string
+        }
+        Update: {
+          claimed_at?: string
+          event_id?: string
+          processed_at?: string | null
+          received_at?: string
+          status?: string
+        }
+        Relationships: []
+      }
       artists: {
         Row: {
           bio_ar: string | null
@@ -120,7 +144,9 @@ export type Database = {
           currency: string
           email: string
           id: string
+          inventory_applied: boolean
           locale: string
+          notified_at: string | null
           shipping_address: Json | null
           shipping_name: string | null
           status: Database["public"]["Enums"]["order_status"]
@@ -135,7 +161,9 @@ export type Database = {
           currency?: string
           email: string
           id?: string
+          inventory_applied?: boolean
           locale?: string
+          notified_at?: string | null
           shipping_address?: Json | null
           shipping_name?: string | null
           status?: Database["public"]["Enums"]["order_status"]
@@ -150,7 +178,9 @@ export type Database = {
           currency?: string
           email?: string
           id?: string
+          inventory_applied?: boolean
           locale?: string
+          notified_at?: string | null
           shipping_address?: Json | null
           shipping_name?: string | null
           status?: Database["public"]["Enums"]["order_status"]
@@ -248,9 +278,20 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      apply_checkout_inventory: {
+        Args: { p_order_id: string; p_product_id: string }
+        Returns: string
+      }
+      claim_order_notification: { Args: { p_order_id: string }; Returns: boolean }
+      claim_stripe_event: {
+        Args: { p_event_id: string; p_stale_after?: string }
+        Returns: string
+      }
+      complete_stripe_event: { Args: { p_event_id: string }; Returns: undefined }
       decrement_edition: { Args: { p_id: string }; Returns: boolean }
       mark_sold: { Args: { p_id: string }; Returns: undefined }
       release_original: { Args: { p_id: string }; Returns: undefined }
+      release_stripe_event: { Args: { p_event_id: string }; Returns: undefined }
       reserve_original: {
         Args: { p_id: string; p_minutes?: number }
         Returns: boolean
