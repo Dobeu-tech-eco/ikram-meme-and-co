@@ -33,7 +33,7 @@ export const legal: LegalContent = {
         {
           heading: "Products, orders & pricing",
           body: [
-            "Ikram & Co. sells original one-of-one artworks, limited-edition sticker sheets and prints, and print-on-demand items created by Arab artists. Because much of our catalog is handmade or produced individually, colors, textures, and finishing may vary slightly from the images shown on screen.",
+            "Ikram & Co. sells original one-of-one artworks, limited-edition sticker sheets and prints, and print-on-demand items from independent artists. Because much of our catalog is handmade or produced individually, colors, textures, and finishing may vary slightly from the images shown on screen.",
             "All prices are listed in the currency shown at checkout and are exclusive of shipping, taxes, and any import duties unless stated otherwise. We work to keep pricing and availability accurate, but errors can occur. If we discover a pricing or description error affecting your order, we may cancel the order and issue a full refund.",
             "An order is confirmed only when we send an order confirmation email. Submitting an order is an offer to purchase, which we may accept or decline.",
           ],
@@ -89,7 +89,7 @@ export const legal: LegalContent = {
         {
           heading: "المنتجات والطلبات والأسعار",
           body: [
-            "تبيع إكرام أعمالًا فنية فريدة من نوعها، وأوراق ملصقات ومطبوعات محدودة الإصدار، ومنتجات تُطبع عند الطلب من إبداع فنانين عرب. ولأن معظم منتجاتنا مصنوعة يدويًا أو تُنتج بشكل فردي، فقد تختلف الألوان والملمس والتشطيب اختلافًا طفيفًا عمّا يظهر على الشاشة.",
+            "تبيع إكرام أعمالًا فنية فريدة من نوعها، وأوراق ملصقات ومطبوعات محدودة الإصدار، ومنتجات تُطبع عند الطلب من إبداع فنانين مستقلين. ولأن معظم منتجاتنا مصنوعة يدويًا أو تُنتج بشكل فردي، فقد تختلف الألوان والملمس والتشطيب اختلافًا طفيفًا عمّا يظهر على الشاشة.",
             "تُعرض جميع الأسعار بالعملة الظاهرة عند إتمام الطلب ولا تشمل الشحن أو الضرائب أو أي رسوم استيراد ما لم يُذكر خلاف ذلك. نحرص على دقة الأسعار والتوافر، لكن قد تقع أخطاء. وإذا اكتشفنا خطأً في السعر أو الوصف يؤثر على طلبك، فقد نلغي الطلب ونصدر استردادًا كاملًا.",
             "يُعتبر الطلب مؤكدًا فقط عند إرسالنا رسالة تأكيد الطلب عبر البريد الإلكتروني. إن تقديم الطلب يُعدّ عرضًا للشراء يجوز لنا قبوله أو رفضه.",
           ],
