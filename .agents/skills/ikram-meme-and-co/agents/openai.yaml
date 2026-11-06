@@ -1,0 +1,6 @@
+interface:
+  display_name: "Ikram Meme And Co"
+  short_description: "Repo-specific patterns and workflows for ikram-meme-and-co"
+  default_prompt: "Use the ikram-meme-and-co repo skill to follow existing architecture, testing, and workflow conventions."
+policy:
+  allow_implicit_invocation: true
