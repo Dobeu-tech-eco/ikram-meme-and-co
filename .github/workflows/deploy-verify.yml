@@ -2,6 +2,7 @@ name: Deploy Verify
 # Post-deploy smoke check against the live site. Set a repo variable
 # PRODUCTION_URL (Settings -> Secrets and variables -> Actions -> Variables),
 # e.g. https://ikram-meme-and-co.vercel.app
+# While the variable is unset the job skips with a notice and passes.
 on:
   workflow_dispatch:
   schedule:
@@ -18,7 +19,7 @@ jobs:
           PRODUCTION_URL: ${{ vars.PRODUCTION_URL }}
         run: |
           if [ -z "$PRODUCTION_URL" ]; then
-            echo "Set the PRODUCTION_URL repo variable to enable this check." >&2
-            exit 1
+            echo "::notice::PRODUCTION_URL not set; skipping smoke check. Set the PRODUCTION_URL repo variable to enable it."
+            exit 0
           fi
           node scripts/verify-deployment.mjs "$PRODUCTION_URL"
