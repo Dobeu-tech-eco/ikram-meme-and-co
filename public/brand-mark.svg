@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none" role="img" aria-label="Ikram &amp; Co.">
+  <rect width="40" height="40" rx="10" fill="#151a22"/>
+  <path
+    d="M20 7.5L30.5 20L20 32.5L9.5 20L20 7.5Z"
+    stroke="url(#publicBrandGrad)"
+    stroke-width="2.2"
+    stroke-linejoin="round"
+  />
+  <path
+    d="M20 13.5L25.5 20L20 26.5L14.5 20L20 13.5Z"
+    fill="url(#publicBrandGrad)"
+  />
+  <defs>
+    <linearGradient id="publicBrandGrad" x1="6" y1="4" x2="34" y2="36" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#c9922a"/>
+      <stop offset="1" stop-color="#2f7a6b"/>
+    </linearGradient>
+  </defs>
+</svg>

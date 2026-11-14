@@ -11,13 +11,18 @@ export function ThemeToggle() {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
+
+  const isDark = mounted && resolvedTheme === "dark";
+  const nextLabel = isDark ? "Light" : "Dark";
+
   return (
     <button
-      aria-label="Toggle theme"
-      className="glass px-3 py-2 text-sm"
-      onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+      type="button"
+      aria-label={`Switch to ${nextLabel} theme`}
+      className="theme-toggle"
+      onClick={() => setTheme(isDark ? "light" : "dark")}
     >
-      {mounted && resolvedTheme === "dark" ? "☀️" : "🌙"}
+      {mounted ? nextLabel : "Theme"}
     </button>
   );
 }

@@ -1,12 +1,31 @@
 {
   "nav": { "shop": "Shop", "artists": "Artists", "home": "Home" },
-  "hero": { "title": "One of one. From real Arab artists.", "cta": "Shop the drop" },
+  "a11y": {
+    "skipToContent": "Skip to content",
+    "primaryNav": "Primary"
+  },
+  "hero": {
+    "brand": "Ikram & Co.",
+    "brandGhost": "IKRAM",
+    "eyebrow": "Independent art, dropped in batches",
+    "title": "Own the original.",
+    "subtitle": "One-of-one artworks, limited editions, and sticker drops — made in small batches and never reprinted. When it's gone, it's gone.",
+    "cta": "Shop the drop",
+    "cta2": "Meet the artists",
+    "badge": "1 of 1",
+    "featuredLabel": "This drop",
+    "tickerA": "Original art",
+    "tickerB": "Limited editions",
+    "tickerC": "One of one",
+    "tickerD": "Never reprinted"
+  },
+  "home": { "dropTitle": "New this drop", "viewAll": "View all" },
   "product": { "buyNow": "Buy now", "sold": "SOLD", "justSold": "Someone just bought this piece.", "by": "by" },
   "footer": {
     "subscribe": "Get drop announcements",
     "emailPlaceholder": "your@email.com",
     "subscribed": "You're on the list.",
-    "tagline": "Original art, limited editions, and stickers from real Arab artists.",
+    "tagline": "Original art, limited editions, and stickers from independent artists.",
     "shopHeading": "Shop",
     "companyHeading": "Company",
     "legalHeading": "Legal",
