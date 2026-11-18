@@ -11,5 +11,16 @@ export async function GET(req: Request) {
     const supabase = await createClient();
     await supabase.auth.exchangeCodeForSession(code);
   }
-  return NextResponse.redirect(new URL(next, url.origin));
+  // Compare parsed origins so protocol-relative URLs and backslashes cannot
+  // bypass the allowlist. Malformed and off-origin targets fall back to home.
+  let destination = new URL("/", url.origin);
+  try {
+    const candidate = new URL(next, url.origin);
+    if (candidate.origin === url.origin && !candidate.username && !candidate.password) {
+      destination = candidate;
+    }
+  } catch {
+    // Keep the safe fallback for invalid URLs.
+  }
+  return NextResponse.redirect(destination);
 }
